@@ -1,0 +1,90 @@
+/* Reset & Body */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f8fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+/* Login Container */
+.login-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+/* Heading */
+.login-container h2 {
+  color: #003366;
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+}
+/* Form Elements */
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.login-container input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s;
+}
+.login-container input:focus {
+  border-color: #007bff;
+}
+/* Login Button */
+.login-container button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.login-container button:hover {
+  background-color: #0056b3;
+}
+/* Optional: Small Text or Link */
+.login-container .small-text {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #555;
+}
+.login-container .small-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+.login-container .small-text a:hover {
+  text-decoration: underline;
+}
+/* Button-style link (e.g. from homepage) */
+.btn-login {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+.btn-login:hover {
+  background-color: #0056b3;
+}
+
