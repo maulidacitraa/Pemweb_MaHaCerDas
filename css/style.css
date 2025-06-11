@@ -1,1 +1,281 @@
+* { /* Reset semua elemen */
+  margin: 0; /* Hilangkan margin default */
+  padding: 0; /* Hilangkan padding default */
+  box-sizing: border-box; /* Box model border-box */
+}
+body {
+  font-family: 'Segoe UI', sans-serif; /* Font utama */
+  background-image: home; /* (Sepertinya salah, tidak ada gambar) */
+  background: #fff; /* Warna background putih */
+  color: #333; /* Warna teks utama */
+}
+/* Container */
+.container {
+  max-width: 3000px; /* Lebar maksimum konten */
+  margin: 0 auto; /* Tengah secara horizontal */
+  padding: 15px; /* Padding dalam konten */
+}
+/* Header */
+.header {
+  background-color: #fff; /* Background header putih */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+}
+.header-content {
+  display: flex; /* Flexbox untuk header */
+  justify-content: space-between; /* Jarak antar elemen */
+  align-items: center; /* Vertikal rata tengah */
+}
+.logo {
+  color: #007bff; /* Warna logo biru */
+  justify-content: left; /* Logo ke kiri */
+  font-size: 1.8rem; /* Ukuran font besar */
+  font-weight: bold; /* Tebal */
+}
+.nav-links a {
+  margin: 0 12px; /* Jarak antar link */
+  text-decoration: none; /* Hilangkan garis bawah */
+  color: #333; /* Warna teks link */
+  font-weight: 500; /* Tebal sedang */
+}
+.btn-login {
+  background-color: #f39c12; /* Warna tombol oranye */
+  color: white; /* Teks putih */
+  padding: 18px 18px; /* Padding tombol */
+  border: none; /* Tanpa border */
+  border-radius: 6px; /* Sudut membulat */
+  cursor: pointer; /* Kursor pointer */
+}
+/* Hero */
+.hero {
+  background-color: #002f66; /* Background biru gelap */
+  color: white; /* Teks putih */
+  padding: 80px 0; /* Padding atas bawah besar */
+}
+.hero-content {
+  display: flex; /* Flexbox untuk hero */
+  align-items: center; /* Vertikal rata tengah */
+  justify-content: space-between; /* Jarak antara teks dan gambar */
+  max-width: 1200px; /* Lebar maksimum */
+  margin: 0 auto; /* Tengah horizontal */
+  padding: 0 40px; /* Padding samping */
+}
+.hero-text {
+  flex: 1; /* Ambil ruang yang tersedia */
+  padding-left: 80px; /* Padding kiri */
+  text-align: left; /* Teks rata kiri */
+}
+.hero-text h2 {
+    font-size: 2.5rem; /* Ukuran judul besar */
+    text-align: left; /* Rata kiri */
+    padding-right: 50px; /* Padding kanan */
+    margin-bottom: 16px; /* Jarak bawah */
+    margin-right: 20; /* Pastikan tidak ada margin kiri */
+}
+.hero-text p {
+  font-size: 1.1rem; /* Ukuran teks deskripsi */
+  margin-bottom: 24px; /* Jarak bawah */
+}
+.btn-primary {
+  background-color: #00a8ff; /* Warna tombol biru muda */
+  color: white; /* Teks putih */
+  padding: 14px 18px; /* Padding tombol */
+  border: none; /* Tanpa border */
+  border-radius: 15px; /* Sudut membulat */
+  cursor: pointer; /* Kursor pointer */
+  font-size: 1rem; /* Ukuran teks tombol */
+}
+.hero-image {
+  flex: 1; /* Ambil ruang yang tersedia */
+  display: flex; /* Flexbox */
+  justify-content: center; /* Gambar di tengah */
+}
+.hero-image img {
+  max-width: 200%; /* Maksimal lebar gambar */
+  width: 500px; /* Lebar gambar */
+  height: auto; /* Tinggi otomatis */
+  object-fit: contain; /* Gambar tidak terpotong */
+  border-radius: 50px; /* Sudut gambar membulat */
+}
+/* CTA */
+.cta {
+  background-color: #f0f0f0; /* Background abu-abu muda */
+  padding: 24px; /* Padding */
+  text-align: center; /* Teks rata tengah */
+  font-weight: bold; /* Teks tebal */
+  font-size: 1.2rem; /* Ukuran teks */
+  color: #003366; /* Warna teks biru tua */
+}
+.testimonials {
+  padding: 60px 20px;
+  background-color: #f0f6ff; /* Biru muda sangat terang */
+  text-align: center;
+  color: #002f66;
+}
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #003366;
+}
+.testimonial-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+}
+.testimonial-card {
+  flex: 1 1 300px;
+  border: 1px solid #cce0ff; /* Biru muda untuk border */
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 320px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  color: #003366;
+}
+.testimonial-card h4 {
+  margin-top: 15px;
+  font-weight: 600;
+  color: #007bff;
+}
+/* Features Section */
+.features-grid {
+  display: flex; /* Flexbox grid fitur */
+  gap: 24px; /* Jarak antar kartu */
+  justify-content: center; /* Tengah horizontal */
+  margin: 65px; /* Jarak atas bawah */
+}
+.feature-card {
+  background-color: #fff; /* Background putih */
+  border-radius: 16px; /* Sudut membulat */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan */
+  padding: 50px; /* Padding */
+  max-width: 550px; /* Lebar maksimum kartu */
+  text-align: center; /* Teks rata tengah */
+  text-decoration: none; /* Hilangkan garis bawah */
+  color: #003366; /* Warna teks */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efek transisi */
+  width: 100%; /* (Sepertinya terlalu besar, biasanya 100%) */
+  margin: 0px; /* Jarak atas bawah */
+}
+.feature-card:hover {
+  transform: translateY(-5px); /* Efek naik saat hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Bayangan lebih besar */
+  
+}
+.feature-card img {
+  width: 250px; /* Ukuran gambar */
+  height: 250px; /* Tinggi gambar */
+  object-fit: contain; /* Gambar tidak terpotong */
+  margin-bottom: 16px; /* Jarak bawah */
+}
+.feature-card h4 {
+  margin-bottom: 10px; /* Jarak bawah */
+  font-size: 1.5rem; /* Ukuran judul */
+  color: #007bff; /* Warna judul */
+}
+.feature-card p {
+  font-size: 1.25rem; /* Ukuran teks */
+  text-align: justify;
+}
+/* Footer Section */
+.footer-full {
+  background-color: #0b2748; /* Background biru gelap */
+  color: #dceaff; /* Warna teks biru muda */
+  padding: 40px 0; /* Padding atas bawah */
+  font-size: 0.95rem; /* Ukuran font */
+}
+.footer-container {
+  display: flex; /* Flexbox untuk kolom footer */
+  flex-wrap: wrap; /* Baris baru jika penuh */
+  justify-content: space-between; /* Jarak antar kolom */
+  margin: 10px; /* Jarak atas bawah */
+}
+.footer-col {
+  flex: 1 1 220px; /* Lebar minimum kolom */
+}
+.footer-logo {
+  color: #00a8ff; /* Warna logo biru muda */
+  font-size: 1.8rem; /* Ukuran font besar */
+  font-weight: bold; /* Tebal */
+  margin-bottom: 20px; /* Jarak bawah */
+  text-align: left; /* Rata kiri */
+}
+.footer-col h4 {
+  font-size: 1.05rem; /* Ukuran judul */
+  margin-bottom: 10px; /* Jarak bawah */
+  color: #fff; /* Warna judul */
+}
+.footer-col h5 {
+  margin-top: 20px; /* Jarak atas */
+  font-size: 1rem; /* Ukuran font */
+  color: #fff; /* Warna judul */
+}
+.footer-col ul {
+  list-style: none; /* Hilangkan bullet */
+  padding-left: 0; /* Hilangkan padding kiri */
+  margin-bottom: 10px; /* Jarak bawah */
+}
+.footer-col ul li {
+  margin-bottom: 8px; /* Jarak antar item */
+}
+.footer-col ul li a {
+  text-decoration: none; /* Hilangkan garis bawah */
+  color: #dceaff; /* Warna link */
+  transition: 0.3s; /* Efek transisi hover */
+}
+.footer-col ul li a:hover {
+  color: #00a8ff; /* Warna saat hover */
+}
+.footer-col p {
+  margin: 6px 0; /* Jarak atas bawah */
+  line-height: 1.5; /* Spasi antar baris */
+}
+.about {
+  padding: 60px 20px; /* Padding besar */
+  background-color: #f9f9f9; /* Background abu-abu sangat muda */
+  color: #333; /* Warna teks */
+}
+.about h2 {
+  font-size: 2rem; /* Ukuran judul */
+  color: #003366; /* Warna judul */
+  margin: 20px; /* Jarak atas-bawah */
+}
+.about p {
+  font-size: 1.1rem; /* Ukuran teks */
+  line-height: 1.6; /* Spasi antar baris */
+  margin-bottom: 16px; /* Jarak bawah */
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+.form-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #003366;
+}
+.form-container input,
+.form-container select,
+.form-container button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.form-container button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.form-container button:hover {
+  background-color: #0056b3;
+}
 
