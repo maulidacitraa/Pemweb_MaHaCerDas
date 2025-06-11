@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrasi Akun - MaHa cerdAs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Registrasi Akun</h2>
+    <form action="register.php" method="POST">
+      <input type="text" name="nama" placeholder="Nama Lengkap" required />
+      <input type="email" name="email" placeholder="Email Aktif" required />
+      <input type="password" name="password" placeholder="Password" required />
+      
+      <select name="role" required>
+        <option value="">-- Pilih Peran --</option>
+        <option value="siswa">Siswa</option>
+        <option value="guru">Guru</option>
+      </select>
+      
+      <button type="submit">Daftar</button>
+    </form>
+    <p>Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+  </div>
+</body>
+</html>
