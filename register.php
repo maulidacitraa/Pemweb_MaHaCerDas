@@ -1,23 +1,74 @@
 <?php
-include 'koneksi.php';
+require_once 'koneksi.php';
 
-$nama = $_POST['nama'];
-$email = $_POST['email'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT); // 🔐 aman & fleksibel
-$role = $_POST['role'];
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nama = trim($_POST['nama']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $role = $_POST['role'];
 
-// Cek email sudah terdaftar
-$cek = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
-if (mysqli_num_rows($cek) > 0) {
-    echo "<script>alert('Email sudah digunakan!'); window.location='register.html';</script>";
-    exit;
-}
+    if (empty($nama) || empty($email) || empty($password) || empty($role)) {
+        $error = "Semua field wajib diisi.";
+    } else {
+        $cek = $conn->prepare("SELECT id FROM users WHERE email = ?");
+        $cek->bind_param("s", $email);
+        $cek->execute();
+        $cek->store_result();
 
-// Masukkan data
-$sql = "INSERT INTO users (nama, email, password, role) VALUES ('$nama', '$email', '$password', '$role')";
-if (mysqli_query($conn, $sql)) {
-    echo "<script>alert('Registrasi berhasil! Tunggu validasi admin.'); window.location='login.html';</script>";
-} else {
-    echo "Gagal registrasi: " . mysqli_error($conn);
+        if ($cek->num_rows > 0) {
+            $error = "Email sudah digunakan.";
+        } else {
+            $hashed = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("INSERT INTO users (nama, email, password, role) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $nama, $email, $hashed, $role);
+
+            if ($stmt->execute()) {
+                header("Location: login.php?daftar=berhasil");
+                exit();
+            } else {
+                $error = "Gagal mendaftar. Silakan coba lagi.";
+            }
+
+            $stmt->close();
+        }
+
+        $cek->close();
+    }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrasi - MaHa Cerdas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Registrasi Akun</h2>
+      
+    <?php if (!empty($error)): ?>
+      <div class="error"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
+
+    <form method="POST" action="">
+      <input type="text" name="nama" placeholder="Nama lengkap" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <select name="role" required>
+        <option value="">-- Pilih Peran --</option>
+        <option value="siswa">Siswa</option>
+        <option value="guru">Guru</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button type="submit">Daftar</button>
+    </form>
+    <p>Sudah punya akun? <a href="login.php">Masuk di sini</a></p>
+  </div>
+</body>
+</html>
