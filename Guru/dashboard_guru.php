@@ -1,38 +1,52 @@
 <?php
 session_start();
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'guru') {
-    header("Location: ../login.html");
-    exit;
+
+// Cek apakah sudah login dan role-nya guru
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'guru') {
+    header("Location: ../login.php");
+    exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Dashboard Guru</title>
-    <link rel="stylesheet" href="css/guru.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Guru</title>
+  <link rel="stylesheet" href="../css/guru.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Selamat datang, Guru <?= htmlspecialchars($_SESSION['nama']); ?></h2>
-
+  <!-- NAVBAR -->
+  <header class="topbar">
+    <div class="logo">MaHa cerdAs</div>
     <nav>
-        <ul>
-            <li><a href="upload_materi.php">Upload Materi</a></li>
-            <li><a href="upload_soal.php">Upload Soal</a></li>
-            <li><a href="upload_video.php">Upload Video</a></li>
-            <li><a href="lihat_hasil_siswa.php">Lihat Hasil Siswa</a></li>
-            <li><a href="../logout.php">Logout</a></li>
-        </ul>
+      <a href="dashboard_guru.php">Dashboard</a>
+      <a href="../logout.php">Logout</a>
     </nav>
+  </header>
 
-    <section>
-        <h3>Statistik Guru</h3>
-        <ul>
-            <li>Materi Diupload: (ambil dari database)</li>
-            <li>Soal Diupload: (ambil dari database)</li>
-            <li>Video Diupload: (ambil dari database)</li>
-        </ul>
-    </section>
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <h1>Selamat Datang, <?= htmlspecialchars($_SESSION['nama']) ?>!</h1>
+    <div class="cards">
+      <div class="card blue">
+        <h3>Kelola Materi</h3>
+        <p>Buat dan edit materi pelajaran</p>
+        <a href="kelola_materi.php" class="button">Lihat</a>
+      </div>
+      <div class="card green">
+        <h3>Latihan Soal</h3>
+        <p>Atur soal dan kunci jawaban</p>
+        <a href="kelola_latihan.php" class="button">Lihat</a>
+      </div>
+      <div class="card yellow">
+        <h3>Lihat Hasil Latihan Soal</h3>
+        <p>Lihat hasil latihan soal siswa disini</p>
+        <a href="lihat_hasil_siswa.php" class="button">Lihat</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
-
