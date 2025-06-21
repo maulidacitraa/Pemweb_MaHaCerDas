@@ -1,34 +1,79 @@
 <?php
 session_start();
-if ($_SESSION['role'] != 'guru') {
-  header('Location: dashboard.php');
-  exit();
+require_once '../koneksi.php';
+
+// Cek role guru
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'guru') {
+    header("Location: ../login.php");
+    exit;
 }
-include 'koneksi.php';
-$result = mysqli_query($conn, "SELECT * FROM hasil ORDER BY siswa");
+
+// Ambil data hasil latihan siswa
+$sql = "SELECT h.*, u.nama 
+        FROM hasil_latihan h 
+        JOIN users u ON h.id_siswa = u.id 
+        ORDER BY h.tanggal DESC";
+$result = $conn->query($sql);
+
+$hasil = [];
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $hasil[] = $row;
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Lihat Hasil Siswa</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Hasil Latihan Siswa</title>
+  <link rel="stylesheet" href="../css/guru.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h2>Hasil Latihan Siswa</h2>
-    <table border="1" cellpadding="10">
-      <tr><th>No</th><th>Nama Siswa</th><th>Soal</th><th>Jawaban</th><th>Nilai</th></tr>
-      <?php $no=1; while($row = mysqli_fetch_assoc($result)) { ?>
+  <header class="topbar">
+    <div class="logo">MaHa cerdAs</div>
+    <nav>
+      <a href="dashboard_guru.php">Dashboard</a>
+      <a href="../logout.php">Logout</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <a href="dashboard_guru.php" class="back-button">← Kembali</a>
+    <h1>Hasil Latihan Siswa</h1>
+
+    <table class="table-hasil">
+      <thead>
         <tr>
-          <td><?= $no++ ?></td>
-          <td><?= $row['siswa'] ?></td>
-          <td><?= $row['soal'] ?></td>
-          <td><?= $row['jawaban'] ?></td>
-          <td><?= $row['nilai'] ?></td>
+          <th>Nama Siswa</th>
+          <th>Jenjang</th>
+          <th>Mapel</th>
+          <th>Benar</th>
+          <th>Salah</th>
+          <th>Nilai</th>
+          <th>Tanggal</th>
         </tr>
-      <?php } ?>
+      </thead>
+      <tbody>
+        <?php if (count($hasil) > 0): ?>
+          <?php foreach ($hasil as $row): ?>
+            <tr>
+              <td><?= htmlspecialchars($row['nama']) ?></td>
+              <td><?= htmlspecialchars($row['jenjang']) ?></td>
+              <td><?= htmlspecialchars($row['mapel']) ?></td>
+              <td><?= $row['benar'] ?></td>
+              <td><?= $row['salah'] ?></td>
+              <td><?= $row['nilai'] ?></td>
+              <td><?= date('d-m-Y H:i', strtotime($row['tanggal'])) ?></td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <tr><td colspan="7">Belum ada data latihan siswa.</td></tr>
+        <?php endif; ?>
+      </tbody>
     </table>
-  </div>
+  </main>
 </body>
 </html>
