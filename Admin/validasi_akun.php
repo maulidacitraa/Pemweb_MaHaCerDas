@@ -1,10 +1,11 @@
 <?php
-// File: validasi_akun.php
 session_start();
+
 if (!isset($_SESSION['nama']) || $_SESSION['role'] !== 'admin') {
-  header("Location: login.html");
+  header("Location: ../login.php");
   exit();
 }
+
 $conn = new mysqli("localhost", "root", "", "mahacerdas");
 $pending = $conn->query("SELECT * FROM users WHERE validasi = 0");
 ?>
@@ -14,16 +15,19 @@ $pending = $conn->query("SELECT * FROM users WHERE validasi = 0");
 <head>
   <meta charset="UTF-8">
   <title>Validasi Akun</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../css/admin.css"> 
 </head>
 <body>
-<header class="header">
-  <div class="container header-content">
-    <h1 class="logo">Validasi Akun Baru</h1>
-    <a href="dashboard.php" class="btn-login">Kembali</a>
-  </div>
+<header class="topbar">
+  <div class="logo">MaHa cerdAs</div>
+  <nav>
+    <a href="dashboard_admin.php">Dashboard</a>
+    <a href="../logout.php" class="logout">Logout</a>
+  </nav>
 </header>
-<section class="container">
+
+<main class="main">
+  <h1>Validasi Akun Baru</h1>
   <table border="1" cellpadding="10">
     <tr>
       <th>Nama</th>
@@ -33,13 +37,15 @@ $pending = $conn->query("SELECT * FROM users WHERE validasi = 0");
     </tr>
     <?php while ($row = $pending->fetch_assoc()) { ?>
       <tr>
-        <td><?php echo $row['nama']; ?></td>
-        <td><?php echo $row['email']; ?></td>
-        <td><?php echo $row['role']; ?></td>
-        <td><a href="validasi_proses.php?id=<?php echo $row['id']; ?>">Validasi</a></td>
+        <td><?= htmlspecialchars($row['nama']) ?></td>
+        <td><?= htmlspecialchars($row['email']) ?></td>
+        <td><?= htmlspecialchars($row['role']) ?></td>
+        <td>
+          <a href="validasi_proses.php?id=<?= $row['id'] ?>" onclick="return confirm('Validasi akun ini?')">Validasi</a>
+        </td>
       </tr>
     <?php } ?>
   </table>
-</section>
+</main>
 </body>
 </html>
