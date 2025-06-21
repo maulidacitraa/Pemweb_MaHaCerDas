@@ -39,7 +39,7 @@
     </div>
   </section>
 
-  <!-- Fitur Utama -->
+  <!-- (4) Fitur Utama -->
   <section class="features">
     <div class="features-grid">
       <a href="#materi" class="feature-card">
@@ -55,7 +55,7 @@
     </div>
   </section>
 
-  <!-- Testimoni Pengguna -->
+  <!-- (5) Testimoni Pengguna -->
   <section class="testimonials">
     <h2>Apa Kata Mereka?</h2>
     <div class="testimonial-grid">
@@ -74,7 +74,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- (6) Footer -->
   <footer class="footer-full">
     <div class="container footer-container">
       <div class="footer-col">
