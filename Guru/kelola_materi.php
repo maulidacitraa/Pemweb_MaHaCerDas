@@ -219,6 +219,7 @@ $result = $stmt->get_result();
           option.value = mapel.nama_mapel;
           option.textContent = mapel.nama_mapel;
 
+          // Auto-select if editing
           if (mapel.nama_mapel === "<?= $editData['mapel'] ?? '' ?>") {
             option.selected = true;
           }
@@ -228,7 +229,8 @@ $result = $stmt->get_result();
       });
   });
 
-    window.onload = function () {
+  // Trigger saat halaman load (untuk edit)
+  window.onload = function () {
     const jenjang = document.getElementById("jenjang").value;
     if (jenjang) {
       document.getElementById("jenjang").dispatchEvent(new Event("change"));
