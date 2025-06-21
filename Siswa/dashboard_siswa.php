@@ -1,56 +1,58 @@
 <?php
 session_start();
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'siswa') {
+
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'siswa') {
     header("Location: ../login.php");
-    exit();
+    exit;
 }
+
+$nama = $_SESSION['nama'] ?? 'Siswa';
+$jenjang = $_SESSION['jenjang'] ?? 'Belum ditentukan';
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard Siswa - MahaCerdas</title>
-  <link rel="stylesheet" href="css/siswa.css" />
+  <meta charset="UTF-8">
+  <title>Dashboard Siswa</title>
+  <link rel="stylesheet" href="../css/siswa.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <nav>
-    <div class="logo">MahaCerdas</div>
-    <ul>
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Profil</a></li>
-      <li><a href="#">Logout</a></li>
-    </ul>
-  </nav>
+  <!-- NAVBAR -->
+  <header class="topbar">
+    <div class="logo">MaHa cerdAs</div>
+    <nav>
+      <a href="#">Dashboard</a>
+      <a href="../logout.php" class="logout">Logout</a>
+    </nav>
+  </header>
 
-  <div class="container">
-    <div class="welcome">Selamat datang, <strong>Siswa!</strong></div>
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <h1>Selamat Datang, <?= htmlspecialchars($nama) ?>!</h1>
 
-    <div class="cards">
-      <div class="card">
-        <img src="assets/img/materi.svg" alt="Materi">
-        <h3>Materi Interaktif</h3>
-        <p>Belajar dengan materi sesuai jenjang dan kurikulum.</p>
+    <div class="card-grid">
+      <div class="card blue">
+        <h3>Materi Pembelajaran</h3>
+        <p>Lihat materi sesuai jenjang kamu: <strong><?= htmlspecialchars($jenjang) ?></strong></p>
+        <a href="materi_mapel.php?jenjang=<?= urlencode($jenjang) ?>">Lihat</a>
       </div>
-      <div class="card">
-        <img src="assets/img/soal.svg" alt="Soal">
+
+      <div class="card green">
         <h3>Latihan Soal</h3>
-        <p>Uji kemampuanmu dengan soal adaptif dan pembahasan.</p>
+        <p>Mengerjakan soal & cek nilai langsung.</p>
+        <a href="soal_mapel.php?jenjang=<?= urlencode($jenjang) ?>">Mulai Latihan</a>
       </div>
-      <div class="card">
-        <img src="assets/img/video.svg" alt="Video">
-        <h3>Video Pembelajaran</h3>
-        <p>Tonton video guru terbaik dengan visual menarik.</p>
+
+      <div class="card orange">
+        <h3>Riwayat Nilai</h3>
+        <p>Lihat hasil & progres kamu.</p>
+        <a href="riwayat_latihan.php">Lihat Hasil</a>
       </div>
     </div>
-  </div>
-
-  <footer>
-    &copy; 2025 MahaCerdas. Semua hak dilindungi.
-  </footer>
+  </main>
 
 </body>
 </html>
-
