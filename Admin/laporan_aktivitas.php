@@ -1,12 +1,23 @@
 <?php
-// File: laporan_aktivitas.php
 session_start();
-if (!isset($_SESSION['nama']) || $_SESSION['role'] !== 'admin') {
-  header("Location: login.html");
-  exit();
+require_once '../koneksi.php';
+
+// Cek role admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
+    exit();
 }
-$conn = new mysqli("localhost", "root", "", "mahacerdas");
-$data = $conn->query("SELECT * FROM aktivitas ORDER BY waktu DESC");
+
+// Ambil data aktivitas (tanpa join, karena tabel aktivitas menyimpan 'user' langsung)
+$sql = "SELECT * FROM aktivitas ORDER BY waktu DESC";
+$result = $conn->query($sql);
+$log = [];
+
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $log[] = $row;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,32 +25,48 @@ $data = $conn->query("SELECT * FROM aktivitas ORDER BY waktu DESC");
 <head>
   <meta charset="UTF-8">
   <title>Laporan Aktivitas</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 </head>
 <body>
-<header class="header">
-  <div class="container header-content">
-    <h1 class="logo">Laporan Aktivitas Pengguna</h1>
-    <a href="dashboard.php" class="btn-login">Kembali</a>
+  <div class="sidebar">
+    <h2>Admin</h2>
+    <ul>
+      <li><a href="dashboard_admin.php">Dashboard</a></li>
+      <li><a href="kelola_pengguna.php">Kelola Pengguna</a></li>
+      <li><a href="kelola_mapel.php">Kelola Mapel</a></li>
+      <li><a href="laporan_aktivitas.php">Laporan Aktivitas</a></li>
+      <li><a href="../logout.php">Logout</a></li>
+    </ul>
   </div>
-</header>
-<section class="container">
-  <table border="1" cellpadding="10">
-    <tr>
-      <th>Nama</th>
-      <th>Role</th>
-      <th>Aktivitas</th>
-      <th>Waktu</th>
-    </tr>
-    <?php while ($row = $data->fetch_assoc()) { ?>
-      <tr>
-        <td><?php echo $row['nama']; ?></td>
-        <td><?php echo $row['role']; ?></td>
-        <td><?php echo $row['aksi']; ?></td>
-        <td><?php echo $row['waktu']; ?></td>
-      </tr>
-    <?php } ?>
-  </table>
-</section>
+
+  <div class="main">
+    <h1>Laporan Aktivitas</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Role</th>
+          <th>Aktivitas</th>
+          <th>Waktu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (!empty($log)): ?>
+          <?php foreach ($log as $item): ?>
+            <tr>
+              <td><?= htmlspecialchars($item['user']) ?></td>
+              <td><?= htmlspecialchars($item['role']) ?></td>
+              <td><?= htmlspecialchars($item['aktivitas']) ?></td>
+              <td><?= htmlspecialchars($item['waktu']) ?></td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <tr><td colspan="4">Belum ada aktivitas tercatat.</td></tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
