@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'koneksi.php'; 
+require_once 'koneksi.php'; // sambung ke DB 'mahacerdas'
 
 $error = '';
 
@@ -11,6 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($email) || empty($password)) {
         $error = "Email dan password wajib diisi.";
     } else {
+        // Login Admin Manual
+        if ($email === 'admin@maha.id' && $password === 'admin123') {
+            $_SESSION['user_id'] = 0;
+            $_SESSION['nama'] = 'Administrator';
+            $_SESSION['role'] = 'admin';
+            header("Location: Admin/dashboard_admin.php");
+            exit();
+        }
+
+        // Login GURU / SISWA
         $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? LIMIT 1");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -19,16 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result && $result->num_rows === 1) {
             $user = $result->fetch_assoc();
 
-            if (password_verify($password, $user['password'])) {
+            if ($user['role'] === 'admin') {
+                $error = "Akun admin tidak bisa login melalui database.";
+            } elseif (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['nama'] = $user['nama'];
                 $_SESSION['role'] = $user['role'];
+                $_SESSION['jenjang'] = $user['jenjang'];
 
-                // Redirect berdasarkan role
+                // Redirect sesuai role
                 switch ($user['role']) {
-                    case 'admin':
-                        header("Location: Admin/dashboard_admin.php");
-                        break;
                     case 'guru':
                         header("Location: Guru/dashboard_guru.php");
                         break;
@@ -66,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Login Akun</h2>
 
     <?php if (!empty($error)): ?>
-      <div class="error"><?= $error ?></div>
+      <div class="error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
     <form action="login.php" method="POST">
