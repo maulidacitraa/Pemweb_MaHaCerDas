@@ -7,13 +7,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'siswa') {
     exit;
 }
 
-$jenjang = $_SESSION['jenjang'] ?? 'SMP';
-
+$jenjang = $_GET['jenjang'] ?? ($_SESSION['jenjang'] ?? 'SMP');
 $stmt = $conn->prepare("
-    SELECT DISTINCT m.nama_mapel
-    FROM materi mt
-    JOIN mapel m ON mt.mapel = m.nama_mapel AND mt.jenjang = m.jenjang
-    WHERE mt.jenjang = ?
+    SELECT DISTINCT mapel 
+    FROM materi 
+    WHERE jenjang = ?
+    ORDER BY mapel ASC
 ");
 $stmt->bind_param("s", $jenjang);
 $stmt->execute();
@@ -38,7 +37,7 @@ $result = $stmt->get_result();
 </header>
 
 <main class="main">
-  <a href="dashboard_siswa.php" class="back-button">← Kembali</a> 
+  <a href="dashboard_siswa.php" class="back-button">← Kembali</a>
 
   <h2>Pilih Mata Pelajaran (<?= htmlspecialchars($jenjang) ?>)</h2>
 
@@ -46,8 +45,8 @@ $result = $stmt->get_result();
     <?php if ($result->num_rows > 0): ?>
       <?php while ($row = $result->fetch_assoc()): ?>
         <div class="materi-card">
-          <h3><?= htmlspecialchars($row['nama_mapel']) ?></h3>
-          <a href="materi_siswa.php?mapel=<?= urlencode($row['nama_mapel']) ?>" class="btn-materi-mapel">Lihat Materi</a>
+          <h3><?= htmlspecialchars($row['mapel']) ?></h3>
+          <a href="materi_siswa.php?mapel=<?= urlencode($row['mapel']) ?>" class="btn-materi-mapel">Lihat Materi</a>
         </div>
       <?php endwhile; ?>
     <?php else: ?>
@@ -55,6 +54,5 @@ $result = $stmt->get_result();
     <?php endif; ?>
   </div>
 </main>
-
 </body>
 </html>

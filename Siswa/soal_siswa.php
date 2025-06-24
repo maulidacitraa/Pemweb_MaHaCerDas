@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit("Query error (hasil_latihan): " . $conn->error);
     }
 
-    // Simpan ke log aktivitas (FIX: gunakan kolom user, bukan user_id)
+    // Simpan ke log aktivitas
     $aktivitas = "$nama menyelesaikan latihan mapel $mapel";
     $log = $conn->prepare("INSERT INTO aktivitas (user, role, aktivitas) VALUES (?, ?, ?)");
     if ($log) {
@@ -106,7 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <main class="main">
   <h2>Latihan Soal: <?= htmlspecialchars($mapel) ?> (<?= htmlspecialchars($jenjang) ?>)</h2>
-
   <?php if ($soal->num_rows > 0): ?>
     <form method="post">
       <?php $no = 1; while ($row = $soal->fetch_assoc()): ?>

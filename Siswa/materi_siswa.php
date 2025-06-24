@@ -8,25 +8,31 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'siswa') {
 }
 
 $id_siswa = $_SESSION['user_id'];
-$nama = $_SESSION['nama'] ?? 'Siswa';
-$role = $_SESSION['role'] ?? 'siswa';
-$jenjang = $_SESSION['jenjang'] ?? 'SMP';
-$mapel = $_GET['mapel'] ?? '';
+$nama     = $_SESSION['nama'] ?? 'Siswa';
+$role     = $_SESSION['role'] ?? 'siswa';
+$jenjang  = $_SESSION['jenjang'] ?? 'SMP';
+$mapel    = $_GET['mapel'] ?? '';
 
 if (empty($mapel)) {
     echo "<script>alert('Mapel tidak ditemukan.'); window.location='materi_mapel.php';</script>";
     exit;
 }
 
-// 🔥 Catat aktivitas siswa: mengakses materi
 $aktivitas = "$nama mengakses materi mapel $mapel";
 $log = $conn->prepare("INSERT INTO aktivitas (user_id, role, aktivitas) VALUES (?, ?, ?)");
-$log->bind_param("iss", $id_siswa, $role, $aktivitas);
-$log->execute();
+if ($log) {
+    $log->bind_param("iss", $id_siswa, $role, $aktivitas);
+    $log->execute();
+}
 
-// Ambil data materi
-$stmt = $conn->prepare("SELECT * FROM materi WHERE jenjang = ? AND mapel = ?");
-$stmt->bind_param("ss", $jenjang, $mapel);
+$jenjang_lower = strtolower($jenjang);
+$mapel_lower   = strtolower($mapel);
+
+$stmt = $conn->prepare("SELECT * FROM materi WHERE LOWER(jenjang) = ? AND LOWER(mapel) = ?");
+if (!$stmt) {
+    die("Query error: " . $conn->error);
+}
+$stmt->bind_param("ss", $jenjang_lower, $mapel_lower);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
@@ -68,6 +74,5 @@ $result = $stmt->get_result();
     <?php endif; ?>
   </div>
 </main>
-
 </body>
 </html>

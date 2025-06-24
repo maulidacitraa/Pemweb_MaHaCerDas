@@ -39,15 +39,6 @@ $result = $stmt->get_result();
 <main class="dashboard-container">
   <a href="dashboard_siswa.php" class="back-button">← Kembali</a>
   <h2>Riwayat Nilai Latihan</h2>
-
-  <!-- FLASH NILAI JIKA ADA -->
-  <?php if (isset($_SESSION['nilai_terakhir'])): ?>
-    <div class="flash-msg success" style="margin-bottom: 20px;">
-      ✅ Latihan terakhir kamu: <strong><?= $_SESSION['nilai_terakhir'] ?></strong>
-    </div>
-    <?php unset($_SESSION['nilai_terakhir']); ?>
-  <?php endif; ?>
-
   <table>
     <thead>
       <tr>
@@ -81,6 +72,5 @@ $result = $stmt->get_result();
     </tbody>
   </table>
 </main>
-
 </body>
 </html>
