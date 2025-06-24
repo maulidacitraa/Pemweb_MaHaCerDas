@@ -1,0 +1,337 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f5f6fa;
+  color: #1e293b;
+}
+/* === NAVBAR ATAS UNTUK GURU === */
+.topbar {
+  background-color: #002b5b;
+  padding: 50px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  color: #007bff; 
+  justify-content: left; 
+  font-size: 1.8rem; 
+  font-weight: bold; 
+}
+.topbar h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2196f3;
+}
+.topbar nav {
+  display: flex;
+  gap: 20px;
+}
+.topbar nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 18px;
+}
+.topbar nav a:hover {
+  background-color: #00509d;
+  color: #fff;
+}
+.topbar nav a.logout {
+  color: #ffffff;
+}
+.topbar nav a.logout:hover {
+  color: #ffffff;
+}
+/* === MAIN CONTENT === */
+.main {
+  padding: 30px;
+}
+.main h1 {
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+/* === CARD STYLE UNTUK FITUR-FITUR === */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  height: 500%;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.card {
+  flex: 1 1 250px;
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.2s ease-in-out;
+}
+.card:hover {
+  transform: translateY(-5px);
+  opacity: 0.95;
+}
+.card h3 {
+  margin-top: 0;
+  font-size: 25px;
+  font-weight: 600;
+}
+/* Tombol dasar */
+.button {
+  margin-top: 80px;
+  display: inline-block;
+  background: #ffffff; 
+  color: rgb(0, 0, 0);
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 0.2s;
+  border: none; 
+  box-shadow: none; 
+}
+.back-button:hover,
+form button:hover {
+  background: #103f80; 
+}
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  background-color: #1d4ed8;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+/* Hover sedikit lebih gelap */
+.button:hover {
+  background: #1e40af; 
+  cursor: pointer;
+}
+/* Warna Kartu */
+.blue { background: #2563eb; }   
+.green { background: #059669; }  
+.yellow { background: #eab308; } 
+/* === KHUSUS TAMPILAN KELOLA MATERI === */
+/* Kontainer Form Upload Materi */
+.form-container {
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  width: 900;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+.form-container h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #334155;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  transition: border 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+/* Tombol Simpan Materi */
+.form-container button[type="submit"] {
+  background: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.form-container button[type="submit"]:hover {
+  background: #1e40af;
+}
+/* TABEL DAFTAR MATERI */
+.table-section {
+  width: 900;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+.table-section h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+.table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.table-section th,
+.table-section td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+.table-section th {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  font-weight: 600;
+}
+.table-section tbody tr:hover {
+  background-color: #f9fafb;
+}
+.table-section a {
+  color: #2563eb;
+  text-decoration: none;
+}
+.table-section a:hover {
+  text-decoration: underline;
+}
+/* === TOMBOL EDIT DAN HAPUS === */
+.edit-btn, .delete-btn {
+  background: none;
+  color: #2563eb;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  padding: 0;
+  margin: 0 6px 0 0;
+  cursor: pointer;
+  text-decoration: none; /* pastikan ini ada */
+  transition: color 0.2s ease;
+}
+.edit-btn:hover,
+.delete-btn:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}
+/* === MODAL KONFIRMASI HAPUS === */
+.modal {
+  display: none; /* Hidden secara default */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Latar blur */
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background-color: #ffffff;
+  padding: 30px 36px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: fadeIn 0.2s ease-in-out;
+}
+.modal-content p {
+  font-size: 16px;
+  margin-bottom: 24px;
+  color: #1e293b;
+}
+/* Tombol di dalam modal */
+.modal-content button {
+  padding: 10px 18px;
+  margin: 0 6px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+/* Tombol Batal */
+.modal-content button.cancel-btn {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+.modal-content button.cancel-btn:hover {
+  background-color: #cbd5e1;
+}
+/* Tombol Ya, Hapus */
+.modal-content button.confirm-btn {
+  background-color: #dc2626;
+  color: white;
+}
+.modal-content button.confirm-btn:hover {
+  background-color: #b91c1c;
+}
+/* Animasi modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.table-hasil {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-size: 15px;
+}
+.table-hasil th, .table-hasil td {
+  padding: 14px 18px;
+  text-align: left;
+}
+.table-hasil thead {
+  background-color: #2563eb;
+  color: white;
+}
+.table-hasil tbody tr:nth-child(even) {
+  background-color: #f4f7fd;
+}
+.table-hasil tbody tr:hover {
+  background-color: #e2eaff;
+  transition: 0.2s;
+}

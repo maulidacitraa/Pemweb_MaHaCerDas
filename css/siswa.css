@@ -1,0 +1,377 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f1f5f9;
+  color: #1e293b;
+  min-height: 100vh;
+}
+/* HEADER NAVBAR */
+header {
+  background-color: #002b5b;
+  padding: 50px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+header .logo {
+  color: #007bff; 
+  justify-content: left;
+  font-size: 1.8rem; 
+  font-weight: bold;
+}
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+header nav a:hover {
+  color: #60a5fa;
+}
+/* CONTAINER UTAMA */
+.dashboard-container {
+  padding: 40px 60px;
+}
+/* JUDUL */
+.dashboard-container h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #1e293b;
+}
+/* GRID MENU */
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+/* KOTAK MENU */
+.menu-box {
+  flex: 1 1 300px;
+  background-color: #3b82f6;
+  padding: 24px;
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  position: relative;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.menu-box.green {
+  background-color: #10b981;
+}
+.menu-box.orange {
+  background-color: #f59e0b;
+}
+.menu-box h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.menu-box p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+/* TOMBOL */
+.menu-box a.button {
+  background: white;
+  color: #1e293b;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.menu-box a.button:hover {
+  background-color: #e2e8f0;
+}
+/* TABEL UMUM */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+thead {
+  background-color: #3b82f6;
+  color: white;
+}
+th, td {
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+tbody tr:hover {
+  background-color: #f3f4f6;
+}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px;
+  }
+  .menu-grid {
+    flex-direction: column;
+  }
+}
+.main {
+  padding: 40px 33px;
+}
+.main h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.card {
+  flex: 1 1 300px;
+  background-color: #3b82f6;
+  padding: 24px;
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  position: relative;
+}
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.card p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.card a {
+  background: white;
+  color: #1e293b;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.card a:hover {
+  background-color: #e2e8f0;
+}
+.card.green {
+  background-color: #10b981;
+}
+.card.orange {
+  background-color: #f59e0b;
+}
+.materi-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  margin-top: 15px;
+  gap: 20px;
+}
+.grid-materi {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  padding: 20px 0;
+}
+.materi-card {
+  background: #ffffff;
+  border-left: 6px solid #3b82f6;
+  padding: 20px;
+  border-radius: 12px;
+  height: 150px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.materi-card h3 {
+  margin: 0 0 8px;
+  color: #1e293b;
+  font-size: 20px;
+}
+.materi-card p {
+  margin: 6px 0;
+  color: #334155;
+  font-size: 17px;
+}
+/* Tombol di halaman MATERI_MAPEL.php */
+.btn-materi-mapel {
+  display: inline-block;
+  margin-top: 12px;
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  width: fit-content; 
+  max-width: 100%;
+}
+.btn-materi-mapel:hover {
+  background-color: #1e40af;
+}
+/* Tombol di halaman MATERI_SISWA.php */
+.btn-materi-siswa {
+  display: inline-block; 
+  margin-top: 0px;
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 15px;
+  max-width: fit-content; 
+}
+.btn-materi-siswa:hover {
+  background-color: #1e3a8a;
+}
+.back-button {
+  display: inline-block;
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 506;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+.back-button:hover {
+  background-color: #1d4ed8;
+}
+/* === STYLING UNTUK SOAL_MAPEL.PHP === */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+.menu-box {
+  background-color: #3b82f6;
+  padding: 40px;
+  border-radius: 15px;
+  color: white;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  transition: transform 0.2s ease;
+}
+.menu-box:hover {
+  transform: translateY(-5px);
+}
+.menu-box h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.menu-box p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+/* Button */
+.menu-box .button {
+  background: white;
+  color: #1e293b;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.menu-box .button:hover {
+  background-color: #e2e8f0;
+}
+.back-button-mapel {
+  display: inline-block;
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+.back-button-mapel:hover {
+  background-color: #1d4ed8;
+}
+.latihan-mapel {
+  padding: 40px 30px;
+}
+.flash-msg.success {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.back-button-riwayat {
+  display: inline-block;
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+.back-button-riwayat:hover {
+  background-color: #1d4ed8;
+}
+.score-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 500px;
+  margin: 40px auto;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  text-align: center;
+}
+.score-card h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.score-value {
+  font-size: 72px;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #10b981;
+}
+.score-value.red {
+  color: #ef4444;
+}
+.score-details {
+  font-size: 18px;
+  margin-top: 20px;
+}
+.btn-kembali {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+.btn-kembali:hover {
+  background-color: #1e40af;
+}
