@@ -47,15 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <div class="mapel-cards">
     <?php
-    $mapelList = [
-      ['Matematika', 'SMA', 'mat.jpeg', 'Pelajari konsep dasar hingga lanjutan dengan latihan interaktif.'],
-      ['Fisika', 'SMA', 'fisika.jpeg', 'Uji pemahaman fisika secara adaptif dan menyenangkan.'],
-      ['Biologi', 'SMA', 'biologi.jpeg', 'Pahami biologi dengan visualisasi yang menarik dan mudah dimengerti.'],
-      ['Kimia', 'SMA', 'kim.jpeg', 'Kenali unsur dan reaksi kimia lewat eksperimen interaktif.'],
-      ['Bahasa Indonesia', 'SMA', 'bindo.jpeg', 'Kuasai tata bahasa, membaca, dan menulis dengan baik dan benar.'],
-      ['Bahasa Inggris', 'SMA', 'bing.jpeg', 'Pelajari grammar, vocabulary, dan kemampuan berbicara dengan mudah.']
-    ];
-
     foreach ($mapelList as [$nama, $jenjang, $gambar, $deskripsi]) {
       echo '
         <div class="mapel-card">
@@ -73,6 +64,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ?>
   </div>
 </div>
-
 </body>
 </html>
