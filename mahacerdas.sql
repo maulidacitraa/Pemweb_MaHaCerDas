@@ -12,11 +12,10 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Password hash acak, bisa diganti hasil password_hash()
+-- Password hash acak
 INSERT INTO users (nama, email, password, role, validasi) VALUES
-('Admin Utama', 'admin@maha.id', '$2y$10$exampleadminpasswordhash', 'admin', 1),
-('Guru Matematika', 'guru@maha.id', '$2y$10$examplegurupasswordhash', 'guru', 1),
-('Siswa Cerdas', 'siswa@maha.id', '$2y$10$examplesiswapasswordhash', 'siswa', 1);
+('Guru SMA', 'gurusma@maha.id', '$2y$10$examplegurupasswordhash', 'guru', 1),
+('Guru SMP', 'gurusmp@maha.id', '$2y$10$examplegurupasswordhash', 'guru', 1);
 
 CREATE TABLE materi (
   id INT AUTO_INCREMENT PRIMARY KEY,
