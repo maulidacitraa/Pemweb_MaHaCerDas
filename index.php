@@ -31,7 +31,7 @@
     <div class="container hero-content">
       <div class="hero-text">
         <h2>Dari Rumah ke Masa Depan, Belajar Bersama MaHa cerdAs</h2>
-        <p>Platform digital pembelajaran interaktif dengan materi, soal, dan video.</p>
+        <p>Platform digital pembelajaran interaktif dengan materi dan latihan soal.</p>
       </div>
       <div class="hero-image">
         <img src="Assets/homepage1.jpeg" alt="Ilustrasi Pembelajaran Digital" />
@@ -104,7 +104,7 @@
       </div>
 
       <div class="footer-col">
-        <h4>PT MaHa Edukasi Indonesia</h4>
+        <h4>PT MaHa cerdAs Indonesia</h4>
         <p>Jl. Merdeka Raya Indonesia<br></p>
         <p>📞 0811 9999 0000 <strong>(Office)</strong></p>
         <p>✉️ info@mahacerdas.id</p>
