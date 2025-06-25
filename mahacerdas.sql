@@ -29,9 +29,6 @@ CREATE TABLE materi (
   FOREIGN KEY (id_guru) REFERENCES users(id)
 );
 
-INSERT INTO materi (judul, deskripsi, file, mapel, id_guru) VALUES 
-('Pengantar Matematika', 'Dasar-dasar matematika kelas 7', 'pengantar_mtk.pdf', 'Matematika', 5);
-
 CREATE TABLE mapel (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nama_mapel VARCHAR(100),
